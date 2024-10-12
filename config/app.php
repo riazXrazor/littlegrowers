@@ -14,6 +14,9 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'company_name' => env('APP_NAME', 'Laravel'),
+    'version' => '0.0.1',
+    'company_url' => '#',
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +55,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost:8000'),
 
     /*
     |--------------------------------------------------------------------------
