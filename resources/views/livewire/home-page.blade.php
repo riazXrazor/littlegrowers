@@ -39,12 +39,12 @@
                             <h4 class="widget-title">Prices</h4>
                             <div class="widget-desc">
                                 <div class="slider-range">
-                                    <div data-min="8" data-max="30" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="8" data-value-max="30" data-label-result="Price:">
+                                    <div data-min="{{ $price_braket['min'] }}" data-max="{{ $price_braket['max'] }}" data-unit="₹" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="{{ $price_braket['min'] }}" data-value-max="{{ $price_braket['max'] }}" data-label-result="Price:">
                                         <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
                                         <span class="ui-slider-handle ui-state-default ui-corner-all first-handle" tabindex="0"></span>
                                         <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
                                     </div>
-                                    <div class="range-price">Price: $8 - $30</div>
+                                    <div class="range-price">Price: ₹{{ $price_braket['min'] }} - ₹{{ $price_braket['max'] }}</div>
                                 </div>
                             </div>
                         </div>
@@ -53,12 +53,18 @@
                         <div class="shop-widget catagory mb-50">
                             <h4 class="widget-title">Categories</h4>
                             <div class="widget-desc">
+                                @foreach ($categories as $category => $value)
                                 <!-- Single Checkbox -->
+                               
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                    <label class="custom-control-label" for="customCheck1">All plants <span class="text-muted">(72)</span></label>
+                                    <input type="checkbox" class="custom-control-input" id="{{$category}}">
+                                    <label class="custom-control-label" for="{{$category}}">{{ $category }} <span class="text-muted">({{ $value }})</span></label>
                                 </div>
-                                <!-- Single Checkbox -->
+
+
+                                @endforeach
+                                
+                                {{-- <!-- Single Checkbox -->
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                     <input type="checkbox" class="custom-control-input" id="customCheck2">
                                     <label class="custom-control-label" for="customCheck2">Outdoor plants <span class="text-muted">(20)</span></label>
@@ -82,7 +88,7 @@
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                     <input type="checkbox" class="custom-control-input" id="customCheck6">
                                     <label class="custom-control-label" for="customCheck6">Others <span class="text-muted">(2)</span></label>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 
@@ -187,33 +193,48 @@
                     <div class="shop-products-area">
                         <div class="row">
 
-                            <!-- Single Product Area -->
-                            <div class="col-12 col-sm-6 col-lg-4">
-                                <div class="single-product-area mb-50">
-                                    <!-- Product Image -->
-                                    <div class="product-img">
-                                        <a href="shop-details"><img src="img/bg-img/40.png" alt=""></a>
-                                        <!-- Product Tag -->
-                                        <div class="product-tag">
-                                            <a href="#">Hot</a>
+                            @foreach ($products as $product)
+                             <!-- Single Product Area -->
+                                <div class="col-12 col-sm-6 col-lg-4">
+                                    <div class="single-product-area mb-50">
+                                        <!-- Product Image -->
+                                        <div class="product-img-home">
+                              
+                                            <a href="shop-details">
+                                                <img src="{{ asset('uploads/'.$product->images[0]['product_images']) }}" alt="{{ $product->product_name }}"></a>
+                                            <!-- Product Tag -->
+                                            @if ($product->is_hot)
+                                            <div class="product-tag">
+                                                <a href="#">Hot</a>
+                                            </div>
+                                            @endif
+
+                                            @if ($product->on_sale)
+                                            <div class="product-tag sale-tag">
+                                                <a href="#">Sale</a>
+                                            </div>
+                                            @endif
+
+                                            <div class="product-meta d-flex">
+                                                <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
+                                                <a href="cart.html" class="add-to-cart-btn">Add to cart</a>
+                                                <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a>
+                                            </div>
                                         </div>
-                                        <div class="product-meta d-flex">
-                                            <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
-                                            <a href="cart.html" class="add-to-cart-btn">Add to cart</a>
-                                            <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a>
+                                        <!-- Product Info -->
+                                        <div class="product-info mt-15 text-center">
+                                            <a href="shop-details">
+                                                <p>{{ $product->product_name }}</p>
+                                            </a>
+                                            <h6>₹ {{ $product->product_price }}</h6>
                                         </div>
-                                    </div>
-                                    <!-- Product Info -->
-                                    <div class="product-info mt-15 text-center">
-                                        <a href="shop-details">
-                                            <p>Cactus Flower</p>
-                                        </a>
-                                        <h6>$10.99</h6>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
+                           
+                            
 
-                            <!-- Single Product Area -->
+                            {{-- <!-- Single Product Area -->
                             <div class="col-12 col-sm-6 col-lg-4">
                                 <div class="single-product-area mb-50">
                                     <!-- Product Image -->
@@ -391,7 +412,7 @@
                                         <h6>$10.99</h6>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <!-- Pagination -->
@@ -407,3 +428,4 @@
             </div>
         </div>
     </section>
+

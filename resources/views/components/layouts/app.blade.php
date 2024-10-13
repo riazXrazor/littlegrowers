@@ -82,7 +82,9 @@
                     <nav class="classy-navbar justify-content-between" id="alazeaNav">
 
                         <!-- Nav Brand -->
-                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="index.html" class="nav-brand" style="color: #fff">
+                            Little <span style="color: #7cb850">Growers</span>
+                        </a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -167,7 +169,9 @@
                     <div class="col-12 col-sm-6 col-lg-6">
                         <div class="single-footer-widget">
                             <div class="footer-logo mb-30">
-                                <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                                <a href="#" style="color: #fff">
+                                    Little <span style="color: 7cb850">Growers</span>
+                                </a>
                             </div>
                             <p>Lorem ipsum dolor sit samet, consectetur adipiscing elit. India situs atione mantor</p>
                             <div class="social-info">

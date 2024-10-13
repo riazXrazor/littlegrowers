@@ -20,18 +20,18 @@ $heads = [
 
 
 $product_data = $products->map(function ($product) {
-        $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
+        $btnEdit = '<a href="'. route('admin.products.edit', $product->id).'" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
                 <i class="fa fa-lg fa-fw fa-pen"></i>
-            </button>';
-$btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
+            </a>';
+$btnDelete = '<a href="'. route('admin.products.delete', $product->id).'" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
                   <i class="fa fa-lg fa-fw fa-trash"></i>
-              </button>';
-$btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
+              </a>';
+$btnDetails = '<a href="#" class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
                    <i class="fa fa-lg fa-fw fa-eye"></i>
-               </button>';
+               </a>';
 
         $product_img = $product->images->map(function ($image) use($product) {
-            return '<img width="50" src="'.$image->product_images.'" alt="'.$product->product_name.'" />';
+            return '<img width="50" src="'.asset('uploads/'.$image->product_images).'" alt="'.$product->product_name.'" />';
         })->implode(' &nbsp;');
         
         return [
@@ -73,5 +73,5 @@ $config["lengthMenu"] = [ 10, 50, 100];
 {{-- Push extra scripts --}}
 
 @push('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+    {{-- <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script> --}}
 @endpush

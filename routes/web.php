@@ -19,6 +19,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/products/add', [ProductsController::class , 'add'])->name('admin.products.add');
 
         Route::post('/products/add', [ProductsController::class , 'add'])->name('admin.products.add.post');
+        Route::get('/products/delete/{id}', [ProductsController::class , 'delete'])->name('admin.products.delete');
+        Route::get('/products/edit/{id}', [ProductsController::class , 'edit'])->name('admin.products.edit');
+        Route::post('/products/edit/{id}', [ProductsController::class , 'edit'])->name('admin.products.edit.post');
         
         Route::post('/logout', [AdminAuth::class , 'logout'])->name('admin.logout');
     });
