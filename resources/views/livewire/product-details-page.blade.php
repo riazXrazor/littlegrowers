@@ -7,29 +7,42 @@
                         <div class="single_product_thumb">
                             <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
-                                    <div class="carousel-item active">
+                                    @foreach ($product->images as $key => $image) 
+                                    @php
+                                        $active = $image->is_main ? 'active' : '';
+                                        $img = Storage::disk('s3')->url($image->product_images);
+                                    @endphp
+                                    <div class="carousel-item {{$active}}">
+                                        <a class="product-img" href="{{$img}}" title="Product Image {{$key}}">
+                                        <img class="d-block w-100" src="{{$img}}" alt="Product Image {{$key}}">
+                                    </a>
+                                    </div>
+                                    @endforeach
+                                  
+                                    {{-- <div class="carousel-item">
                                         <a class="product-img" href="img/bg-img/49.jpg" title="Product Image">
-                                        <img class="d-block w-100" src="img/bg-img/49.jpg" alt="1">
+                                        <img class="d-block w-100" src="/img/bg-img/49.jpg" alt="1">
                                     </a>
                                     </div>
                                     <div class="carousel-item">
                                         <a class="product-img" href="img/bg-img/49.jpg" title="Product Image">
-                                        <img class="d-block w-100" src="img/bg-img/49.jpg" alt="1">
+                                        <img class="d-block w-100" src="/img/bg-img/49.jpg" alt="1">
                                     </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="product-img" href="img/bg-img/49.jpg" title="Product Image">
-                                        <img class="d-block w-100" src="img/bg-img/49.jpg" alt="1">
-                                    </a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <ol class="carousel-indicators">
-                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/bg-img/49.jpg);">
+                                    @foreach ($product->images as $key => $image) 
+                                    @php
+                                        $img = Storage::disk('s3')->url($image->product_images);
+                                    @endphp
+                                     <li class="active" data-target="#product_details_slider" data-slide-to="{{$key}}" style="background-image: url({{$img}});">
+                                     </li>
+                                    @endforeach
+                                   
+                                    {{-- <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(/img/bg-img/49.jpg);">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/bg-img/49.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/bg-img/49.jpg);">
-                                    </li>
+                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(/img/bg-img/49.jpg);">
+                                    </li> --}}
                                 </ol>
                             </div>
                         </div>
@@ -37,10 +50,10 @@
 
                     <div class="col-12 col-md-6">
                         <div class="single_product_desc">
-                            <h4 class="title">Recuerdos Plant</h4>
-                            <h4 class="price">$9.99</h4>
+                            <h4 class="title">{{ $product->product_name }}</h4>
+                            <h4 class="price">₹ {{ $product->product_price }}</h4>
                             <div class="short_overview">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pellem malesuada in nibh selama euismod. Curabitur a rhoncus dui. Nunc lobortis cursus magna utrum faucibus. Vivamus justo nibh, pharetra non risus accumsan, tincidunt suscipit leo.</p>
+                                <p>{{ $product->product_description }}</p>
                             </div>
 
                             <div class="cart--area d-flex flex-wrap align-items-center">
@@ -61,9 +74,9 @@
                             </div>
 
                             <div class="products--meta">
-                                <p><span>SKU:</span> <span>CT201807</span></p>
-                                <p><span>Category:</span> <span>Outdoor Plants</span></p>
-                                <p><span>Tags:</span> <span>plants, green, cactus </span></p>
+                                <p><span>SKU:</span> <span>{{ $product->sku }}</span></p>
+                                <p><span>Category:</span> <span>{{ $product->product_category }}</span></p>
+                                <p><span>Tags:</span> <span>{{ implode(", ", json_decode($product->product_tags)) }} </span></p>
                                 <p>
                                     <span>Share on:</span>
                                     <span>
@@ -90,9 +103,9 @@
                             <li class="nav-item">
                                 <a href="#description" class="nav-link active" data-toggle="tab" role="tab">Description</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="#addi-info" class="nav-link" data-toggle="tab" role="tab">Additional Information</a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a href="#reviews" class="nav-link" data-toggle="tab" role="tab">Reviews <span class="text-muted">(1)</span></a>
                             </li>
@@ -101,11 +114,10 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade show active" id="description">
                                 <div class="description_area">
-                                    <p>Sed a facilisis orci. Curabitur magna urna, varius placerat placerat sodales, pretium vitae orci. Aliquam erat volutpat. Cras sit amet suscipit magna. Quisque turpis odio, facilisis vel eleifend eu, dignissim ac odio.</p>
-                                    <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. In scelerisque augue at the moment mattis. Proin vitae arcu sit amet justo sollicitudin tincidunt sit amet ut velit.Proin placerat vel augue eget euismod. Phasellus cursus orci eu tellus vestibulum, vestibulum urna accumsan. Vestibulum ut ullamcorper sapien. Pellentesque molestie, est ac vestibulum eleifend, lorem ipsum mollis ipsum.</p>
+                                    <p>{{ $product->product_description }}</p>    
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade" id="addi-info">
+                            {{-- <div role="tabpanel" class="tab-pane fade" id="addi-info">
                                 <div class="additional_info_area">
                                     <p>What should I do if I receive a damaged parcel?
                                         <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit impedit similique qui, itaque delectus labore.</span></p>
@@ -116,7 +128,7 @@
                                     <p>How do I cancel my order?
                                         <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum eius eum, minima!</span></p>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div role="tabpanel" class="tab-pane fade" id="reviews">
                                 <div class="reviews_area">
                                     <ul>

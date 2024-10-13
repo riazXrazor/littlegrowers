@@ -199,9 +199,17 @@
                                     <div class="single-product-area mb-50">
                                         <!-- Product Image -->
                                         <div class="product-img-home">
-                              
-                                            <a href="shop-details">
-                                                <img src="{{ asset('uploads/'.$product->images[0]['product_images']) }}" alt="{{ $product->product_name }}"></a>
+                                           
+                                            <a href="{{ route('product.details', $product->slug) }}">
+                                                @php
+                                                    $mainimages = $product->images->filter(function ($image) {
+                                                        return $image->is_main == 1 || $image->is_main == true;
+                                                    })->first();
+                                                    if(!$mainimages){
+                                                        $mainimages = $product->images->first();
+                                                    }
+                                                @endphp
+                                                <img src="{{ Storage::url($mainimages['product_images']) }}" alt="{{ $product->product_name }}"></a>
                                             <!-- Product Tag -->
                                             @if ($product->is_hot)
                                             <div class="product-tag">
@@ -215,15 +223,15 @@
                                             </div>
                                             @endif
 
-                                            <div class="product-meta d-flex">
+                                            {{-- <div class="product-meta d-flex">
                                                 <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
                                                 <a href="cart.html" class="add-to-cart-btn">Add to cart</a>
                                                 <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <!-- Product Info -->
                                         <div class="product-info mt-15 text-center">
-                                            <a href="shop-details">
+                                            <a href="{{ route('product.details', $product->slug) }}">
                                                 <p>{{ $product->product_name }}</p>
                                             </a>
                                             <h6>₹ {{ $product->product_price }}</h6>

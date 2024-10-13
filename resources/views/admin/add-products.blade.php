@@ -10,7 +10,7 @@
 
 @section('content_body')
 
-    {{-- @if ($errors->any())
+    @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -18,7 +18,7 @@
             @endforeach
         </ul>
     </div>
-@endif --}}
+@endif
     <form action="{{ route('admin.products.add.post') }}" method="POST" enctype="multipart/form-data">
         @csrf <!-- {{ csrf_field() }} -->
         <div class="row">
@@ -38,11 +38,19 @@
         <div class="row">
             <div class="col-md-12">
                 <x-adminlte-textarea name="product_description" type="number" label="Product Description"
-                    placeholder="Product Description" fgroup-class="col-md-12" value="{{ old('product_description') }}" />
+                    placeholder="Product Description" fgroup-class="col-md-12" >{{ old('product_description') }}</x-adminlte-textarea>
             </div>
         </div>
 
-       
+        @php
+        $categories = [
+            'Outdoor Plants',
+            'Indoor Plants',
+            'Office Plants',
+            'Potted',
+            'Others',
+        ]
+    @endphp
         <div class="row">
             <div class="col-md-12">
                 <x-adminlte-select2 name="product_category" label="Product Category" 
@@ -52,12 +60,9 @@
                         <i class="fas fa-leaf"></i>
                     </div>
                 </x-slot>
-                <option/>
-                <option>Outdoor Plants</option>
-                <option>Indoor Plants</option>
-                <option>Office Plants</option>
-                <option>Potted</option>
-                <option>Others</option>
+                @foreach ($categories as $category)
+                <option value="{{ $category }}" selected={{ old('product_category') == $category }}>{{ $category }}</option>
+            @endforeach
             </x-adminlte-select2>
             </div>
             </div>
@@ -70,6 +75,17 @@
                         'placeholder' => 'Select Product Tags...',
                         'allowClear' => true,
                     ];
+
+                    $tags = [
+                        'Plants',
+                        'Green',
+                        'Cactus',
+                        'Flower',
+                        'Leave',
+                        'Aquatic',
+                    ];
+
+                    $selected_tags = old('product_tags');
                 @endphp
                 <x-adminlte-select2 id="product_tags" name="product_tags[]" label="Product Tags" :config="$config" multiple>
                     <x-slot name="prependSlot">
@@ -80,12 +96,11 @@
                     <x-slot name="appendSlot">
                         <x-adminlte-button theme="outline-dark" label="Clear" icon="fas fa-lg fa-ban" />
                     </x-slot>
-                    <option>Plants</option>
-                    <option>Green</option>
-                    <option>Cactus</option>
-                    <option>Flower</option>
-                    <option>Leave</option>
-                    <option>Aquatic</option>
+                    @foreach ($tags as $tag)
+                    <option value="{{ $tag }}" 
+                        @if ($selected_tags && in_array($tag, $selected_tags)) selected @endif
+                    >{{ $tag }}</option>
+                @endforeach
                 </x-adminlte-select2>
             </div>
         </div>

@@ -19,20 +19,25 @@ class ProductsController extends Controller
     public function add(Request $request)
     {
         if ($request->isMethod('post')) {
+            
             $validated = $request->validate([
                 'product_name' => 'required|max:255',
                 'product_price' => 'required|numeric',
                 'product_description' => 'required',
                 'product_category' => 'required',
                 'product_tags' => 'required',
-                'product_images' => 'required',
+                'product_images' =>'required',
+                'product_images.*' => 'required|mimes:jpg,jpeg,bmp,png,webp|max:5000',
+            ],[
+                'product_images.*.required' => 'Please upload product images',
+                'product_images.*.mimes' => 'Only jpeg,png and bmp images are allowed',
+                'product_images.*.max' => 'Sorry! Maximum allowed size for an image is 5MB',
             ]);
+          
             $validated['product_images_uploaded'] = [];
             foreach ($request->file('product_images') as $image) {
-                $validated['product_images_uploaded'][] = $image->store('product-images', ['disk' => 'local_uploads']);
-            }
-
-      
+                $validated['product_images_uploaded'][] = $image->store('product-images');
+            }   
             
             $product = new Product();
             $product->product_name = $validated['product_name'];
@@ -40,6 +45,7 @@ class ProductsController extends Controller
             $product->product_description = $validated['product_description'];
             $product->product_category = $validated['product_category'];
             $product->product_tags = json_encode($validated['product_tags']);
+            $product->sku = 'LG-'.now()->format('ymd');
             $product->save();
 
             foreach ($validated['product_images_uploaded'] as $image) {
@@ -49,6 +55,7 @@ class ProductsController extends Controller
                 $productImage->save();
             }
 
+           
             return redirect('/admin/products');
             
 
@@ -67,20 +74,26 @@ class ProductsController extends Controller
                 'product_description' => 'required',
                 'product_category' => 'required',
                 'product_tags' => 'required',
+                'product_images.*' => 'mimes:jpeg,jpg,png,bmp,webp|max:5000',
+            ],[
+                'product_images.*.mimes' => 'Only jpeg,jpg,png,bmp and webp images are allowed',
+                'product_images.*.max' => 'Maximum allowed size for an image is 5MB',
             ]);
 
             if($request->hasFile('product_images')){
                 $images = $product->images;
                 foreach ($images as $image) {
-                    Storage::disk('local_uploads')->delete($image->product_images);
+                    Storage::disk('s3')->delete($image->product_images);
                     $image->delete();
                 }
                 
                 $validated['product_images_uploaded'] = [];
                 foreach ($request->file('product_images') as $image) {
-                    $validated['product_images_uploaded'][] = $image->store('product-images', ['disk' => 'local_uploads']);
+                    $validated['product_images_uploaded'][] = $image->store('product-images');
                 }
             }
+
+         
             
             $product->product_name = $validated['product_name'];
             $product->product_price = $validated['product_price'];
@@ -112,11 +125,34 @@ class ProductsController extends Controller
         $product = Product::find($id);
         $images = $product->images;
         foreach ($images as $image) {
-            Storage::disk('local_uploads')->delete($image->product_images);
+            Storage::disk('s3')->delete($image->product_images);
             $image->delete();
         }
         
         $product->delete();
+        return redirect('/admin/products');
+    }
+
+    public function image_update($id, Request $request)
+    {
+        $operation = $request->input('operation');
+        $productimage = ProductImage::find($id);
+
+        switch ($operation) {
+            case 'delete':
+                $image = $productimage->product_images;
+                Storage::disk('s3')->delete($image);
+                $productimage->delete();
+                break;
+            case 'cover':
+                ProductImage::where('product_id', $productimage->product_id)->update(['is_main' => false]);
+                $productimage->is_main = true;
+                $productimage->save();
+            break;
+            default:
+                break;
+        }
+      
         return redirect('/admin/products');
     }
 }

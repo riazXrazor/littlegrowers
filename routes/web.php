@@ -22,6 +22,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/products/delete/{id}', [ProductsController::class , 'delete'])->name('admin.products.delete');
         Route::get('/products/edit/{id}', [ProductsController::class , 'edit'])->name('admin.products.edit');
         Route::post('/products/edit/{id}', [ProductsController::class , 'edit'])->name('admin.products.edit.post');
+
+        Route::post('/products/image/{id}', [ProductsController::class , 'image_update'])->name('admin.products.image.update');
         
         Route::post('/logout', [AdminAuth::class , 'logout'])->name('admin.logout');
     });
@@ -34,7 +36,7 @@ Route::prefix('admin')->group(function () {
 
 });
 
-Route::get('/', HomePage::class);
-Route::get('/shop-details', ProductDetailsPage::class);
-Route::get('/contact', ContactUsPage::class);
-Route::get('/about', AboutUsPage::class);
+Route::get('/', HomePage::class)->name('homepage');
+Route::get('/plant/{slug}', ProductDetailsPage::class)->name('product.details');
+Route::get('/contact', ContactUsPage::class)->name('contact.us');
+Route::get('/about', AboutUsPage::class)->name('about.us');

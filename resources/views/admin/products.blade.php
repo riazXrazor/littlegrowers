@@ -26,12 +26,60 @@ $product_data = $products->map(function ($product) {
 $btnDelete = '<a href="'. route('admin.products.delete', $product->id).'" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
                   <i class="fa fa-lg fa-fw fa-trash"></i>
               </a>';
-$btnDetails = '<a href="#" class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
-                   <i class="fa fa-lg fa-fw fa-eye"></i>
-               </a>';
+// $btnDetails = '<a href="#" class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
+//                    <i class="fa fa-lg fa-fw fa-eye"></i>
+//                </a>';
 
         $product_img = $product->images->map(function ($image) use($product) {
-            return '<img width="50" src="'.asset('uploads/'.$image->product_images).'" alt="'.$product->product_name.'" />';
+            $mid = $product->id.'-'.$image->id;
+            $makemain = !$image->is_main ? '<form action="'. route('admin.products.image.update', $image->id).'" method="POST">
+                                    <input type="hidden" name="_token" value="'.csrf_token().'" />
+                                        <input type="hidden" name="operation" value="cover">
+                                        <button type="submit"class="btn btn-primary">make this product cover</button>    
+                                    </form>' : '';
+            $html = '<div class="modal fade" id="'.$mid.'" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                                >
+                                <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mt-3 text-center">
+                                    <form action="'. route('admin.products.image.update', $image->id).'" method="POST">
+                                       <input type="hidden" name="_token" value="'.csrf_token().'" />
+                                        <input type="hidden" name="operation" value="delete">
+                                        <button type="submit"class="btn btn-danger">delete</button>
+                                    </form>
+                                    
+                                    '.$makemain.'
+                                    
+                                </div>
+                            </div>
+
+                                <img src="'.Storage::disk('s3')->url($image->product_images).'" />
+                                
+                                
+                            <div class="modal-footer">
+                                <button
+                                type="button"
+                                class="btn btn-default bg-secondary"
+                                data-dismiss="modal"
+                                >
+                                Close
+                                </button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>';
+                        $ismain = $image->is_main ? 'border: 2px solid red;' : '';
+            return '<img style="'.$ismain.'" width="50" onclick="jQuery(\'#'.$mid.'\').modal(\'show\')" src="'.Storage::disk('s3')->url($image->product_images).'" alt="'.$product->product_name.'" />'.$html;
         })->implode(' &nbsp;');
         
         return [
@@ -39,7 +87,7 @@ $btnDetails = '<a href="#" class="btn btn-xs btn-default text-teal mx-1 shadow" 
             $product->product_name,
             $product->product_price,
             $product_img, 
-            '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'
+            '<nobr>'.$btnEdit.$btnDelete.'</nobr>'
     ];   
      });
 
@@ -61,9 +109,8 @@ $config["lengthMenu"] = [ 10, 50, 100];
 {{-- Compressed with style options / fill data using the plugin config --}}
 <x-adminlte-datatable id="products_table" :heads="$heads" head-theme="dark" :config="$config"
     striped hoverable bordered compressed />
+    @csrf
 @stop
-
-{{-- Push extra CSS --}}
 
 @push('css')
     {{-- Add here extra stylesheets --}}
