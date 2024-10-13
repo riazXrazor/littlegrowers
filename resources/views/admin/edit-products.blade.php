@@ -41,6 +41,7 @@
                     placeholder="Product Description" fgroup-class="col-md-12">{{ $product->product_description }}</x-adminlte-textarea>
             </div>
         </div>
+        
         @php
             $categories = [
                 'Outdoor Plants',
