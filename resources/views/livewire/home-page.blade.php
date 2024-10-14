@@ -4,7 +4,6 @@
                 <!-- Shop Sorting Data -->
                 <div class="col-12">
                     <div class="shop-sorting-data d-flex flex-wrap align-items-center justify-content-between">
-                    
                         <!-- Shop Page Count -->
                         <div class="shop-page-count">
                             @if ($products->hasPages())
