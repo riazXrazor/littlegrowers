@@ -9,6 +9,7 @@ class HomePage extends Component
 {
     public function render()
     {
+        $perpage = request()->has('perpage') ? request()->get('perpage') : 2;
         $categories = [
             'All plants' =>  0,
             'Outdoor Plants' => 0,
@@ -19,7 +20,7 @@ class HomePage extends Component
         ];
 
        
-        $products = Product::with('images')->get();
+        $products = Product::with('images')->paginate($perpage);
         $prices = [];
         foreach ($products as $product) {
             $categories['All plants'] += 1;
@@ -27,8 +28,8 @@ class HomePage extends Component
             $prices[] = $product->product_price;
         }
 
-     
-       
+        
+    //    dd($products);
 
         $price_braket = [
             'max' => max($prices),

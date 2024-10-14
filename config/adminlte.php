@@ -450,25 +450,25 @@ return [
             ],
         ],
         'Select2' => [
-        'active' => true,
-        'files' => [
-            [
-                'type' => 'js',
-                'asset' => true,
-                'location' => 'vendor/select2/js/select2.full.min.js',
-            ],
-            [
-                'type' => 'css',
-                'asset' => true,
-                'location' => 'vendor/select2/css/select2.min.css',
-            ],
-            [
-                'type' => 'css',
-                'asset' => true,
-                'location' => 'vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/select2/js/select2.full.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/select2/css/select2.min.css',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css',
+                ],
             ],
         ],
-    ],
         'Chartjs' => [
             'active' => false,
             'files' => [
@@ -504,6 +504,41 @@ return [
                 ],
             ],
         ],
+        'KrajeeFileinput' => [
+        'active' => true,
+        'files' => [
+            [
+                'type' => 'css',
+                'asset' => true,
+                'location' => 'vendor/krajee-fileinput/css/fileinput.min.css',
+            ],
+            [
+                'type' => 'css',
+                'asset' => true,
+                'location' => 'vendor/krajee-fileinput/themes/explorer-fa5/theme.min.css',
+            ],
+            [
+                'type' => 'js',
+                'asset' => true,
+                'location' => 'vendor/krajee-fileinput/js/fileinput.min.js',
+            ],
+            [
+                'type' => 'js',
+                'asset' => true,
+                'location' => 'vendor/krajee-fileinput/themes/fa5/theme.min.js',
+            ],
+            [
+                'type' => 'js',
+                'asset' => true,
+                'location' => 'vendor/krajee-fileinput/themes/explorer-fa5/theme.min.js',
+            ],
+            [
+                'type' => 'js',
+                'asset' => true,
+                'location' => 'vendor/krajee-fileinput/js/locales/es.js',
+            ],
+        ],
+    ],
     ],
 
     /*

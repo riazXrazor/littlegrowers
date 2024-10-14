@@ -1038,11 +1038,16 @@ img {
 }
 .single-product-area .product-img-home a {
     display: block;
+    width: 255px;
+    height: 255px;
 }
 .single-product-area .product-img-home img {
     position: relative;
     z-index: 1;
-    width: 100%;
+    /* width: 100%; */
+    width: 255px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
 }
 .single-product-area .product-img-home .product-tag a {
     background-color: #429edf;

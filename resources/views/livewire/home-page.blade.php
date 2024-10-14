@@ -4,24 +4,44 @@
                 <!-- Shop Sorting Data -->
                 <div class="col-12">
                     <div class="shop-sorting-data d-flex flex-wrap align-items-center justify-content-between">
+                    
                         <!-- Shop Page Count -->
                         <div class="shop-page-count">
-                            <p>Showing 1–9 of 72 results</p>
+                            @if ($products->hasPages())
+                            @php
+                                $from = $products->perPage() * ($products->currentPage() - 1);
+                                $to = $from  + $products->count() ;
+                            @endphp
+                            <p>Showing {{ $from + 1 }}–{{ $to }} of {{ $products->total() }} results</p>
+                            @endif
                         </div>
+                  
                         <!-- Search by Terms -->
                         <div class="search_by_terms">
-                            <form action="#" method="post" class="form-inline">
-                                <select class="custom-select widget-title">
-                                  <option selected>Short by Popularity</option>
-                                  <option value="1">Short by Newest</option>
-                                  <option value="2">Short by Sales</option>
-                                  <option value="3">Short by Ratings</option>
+                            <form action="{{ url()->full() }}" method="get" class="form-inline">
+                                <select name="orderby" class="custom-select widget-title" onchange="this.form.submit()">
+                                    <option value="sales" selected>Short by Newest</option>
+                                  <option  value="popularity">Short by Price High to Low</option>
+                                  <option value="newest">Short by Price Low to High</option>
+                     
                                 </select>
-                                <select class="custom-select widget-title">
-                                  <option selected>Show: 9</option>
+                                @php
+                                    $perpagearr = [20,60,80,100];
+                                @endphp
+                                <select name="perpage" class="custom-select widget-title" onchange="this.form.submit()">
+                                  {{-- <option selected>Show: 9</option>
                                   <option value="1">12</option>
                                   <option value="2">18</option>
-                                  <option value="3">24</option>
+                                  <option value="3">24</option> --}}
+                                  @foreach ($perpagearr as $value)
+                                    <option 
+                                    value="{{ $value }}"
+                                    @if (request()->get('perpage') == $value)
+                                    selected
+                                    @endif
+                                  
+                                    >Show: {{ $value }}</option>
+                                  @endforeach
                                 </select>
                             </form>
                         </div>
@@ -125,7 +145,7 @@
                         </div>
 
                         <!-- Shop Widget -->
-                        <div class="shop-widget best-seller mb-50">
+                        {{-- <div class="shop-widget best-seller mb-50">
                             <h4 class="widget-title">Best Seller</h4>
                             <div class="widget-desc">
 
@@ -184,7 +204,7 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -192,7 +212,7 @@
                 <div class="col-12 col-md-8 col-lg-9">
                     <div class="shop-products-area">
                         <div class="row">
-
+                           
                             @foreach ($products as $product)
                              <!-- Single Product Area -->
                                 <div class="col-12 col-sm-6 col-lg-4">
@@ -422,15 +442,16 @@
                                 </div>
                             </div> --}}
                         </div>
-
+                        
                         <!-- Pagination -->
-                        <nav aria-label="Page navigation">
+                        {{ $products->links('vendor.pagination.bootstrap-4') }}
+                        {{-- <nav aria-label="Page navigation">
                             <ul class="pagination">
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
                                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                                 <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
                             </ul>
-                        </nav>
+                        </nav> --}}
                     </div>
                 </div>
             </div>

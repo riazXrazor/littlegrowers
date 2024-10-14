@@ -109,7 +109,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <x-adminlte-input-file id="product_images" name="product_images[]" label="Product Images"
+                {{-- <x-adminlte-input-file id="product_images" name="product_images[]" label="Product Images"
                     placeholder="Choose multiple images..." igroup-size="lg" legend="Choose" multiple>
 
                     <x-slot name="prependSlot">
@@ -117,7 +117,23 @@
                             <i class="fas fa-file-upload"></i>
                         </div>
                     </x-slot>
-                </x-adminlte-input-file>
+                </x-adminlte-input-file> --}}
+
+                @php
+$config = [
+    'allowedFileTypes' => ['image'],
+    'browseOnZoneClick' => true,
+    'theme' => 'explorer-fa5',
+    'showUpload' => false,
+    'initialPreviewShowDelete' => true,
+    'maxFileSize'=> 5000,
+    'maxFileCount'=> 8,
+    'allowedFileExtensions' => ['jpeg','jpg','png','bmp','webp']
+];
+@endphp
+<x-adminlte-input-file-krajee id="product_images" name="product_images[]" label="Product Images"
+    data-msg-placeholder="Choose a image file..."
+     :config="$config" multiple/>
             </div>
         </div>
         <div class="row">

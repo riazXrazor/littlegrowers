@@ -188,7 +188,7 @@
 
                     <!-- Single Footer Widget -->
                     <div class="col-12 col-sm-6 col-lg-3">
-                        <div class="single-footer-widget">
+                        {{-- <div class="single-footer-widget">
                             <div class="widget-title">
                                 <h5>BEST SELLER</h5>
                             </div>
@@ -214,7 +214,7 @@
                                     <p>$11.99</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <!-- Single Footer Widget -->

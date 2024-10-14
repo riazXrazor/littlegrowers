@@ -48,10 +48,11 @@ class ProductsController extends Controller
             $product->sku = 'LG-'.now()->format('ymd');
             $product->save();
 
-            foreach ($validated['product_images_uploaded'] as $image) {
+            foreach ($validated['product_images_uploaded'] as $key => $image) {
                 $productImage = new ProductImage();
                 $productImage->product_id = $product->id;
                 $productImage->product_images = $image;
+                $productImage->is_main = $key == 0 ? true : false;
                 $productImage->save();
             }
 
@@ -104,10 +105,11 @@ class ProductsController extends Controller
 
            
             if($request->hasFile('product_images') && isset($validated['product_images_uploaded'])) {
-                foreach ($validated['product_images_uploaded'] as $image) {
+                foreach ($validated['product_images_uploaded'] as $key => $image) {
                     $productImage = new ProductImage();
                     $productImage->product_id = $product->id;
                     $productImage->product_images = $image;
+                    $productImage->is_main = $key == 0 ? true : false;
                     $productImage->save();
                 }
             }
