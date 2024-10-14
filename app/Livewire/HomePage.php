@@ -9,7 +9,7 @@ class HomePage extends Component
 {
     public function render()
     {
-        $perpage = request()->has('perpage') ? request()->get('perpage') : 2;
+        $perpage = request()->has('perpage') ? request()->get('perpage') : 20;
         $categories = [
             'All plants' =>  0,
             'Outdoor Plants' => 0,
