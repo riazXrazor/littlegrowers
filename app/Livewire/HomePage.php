@@ -9,9 +9,9 @@ class HomePage extends Component
 {
     public function render()
     {
-        $perpage = request()->has('perpage') ? request()->get('perpage') : 20;
-        $orderby = request()->has('orderby') ? request()->get('orderby') : 'created_at';
-        $order_type = request()->has('order_type') ? request()->get('order_type') : 'desc';
+        $perpage = request()->has('perpage') && !empty(request()->get('perpage')) ? request()->get('perpage') : 20;
+        $orderby = request()->has('orderby') && !empty(request()->get('orderby')) ? request()->get('orderby') : 'created_at';
+        $order_type = request()->has('order_type') && !empty(request()->get('order_type')) ? request()->get('order_type') : 'desc';
         
         $categories = [
             'All' =>  0,
