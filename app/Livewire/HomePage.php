@@ -11,20 +11,22 @@ class HomePage extends Component
     {
         $perpage = request()->has('perpage') ? request()->get('perpage') : 20;
         $categories = [
-            'All plants' =>  0,
-            'Outdoor Plants' => 0,
-            'Indoor Plants' => 0,
-            'Office Plants' => 0,
-            'Potted' => 0,
-            'Others' => 0,
+            'All' =>  0,
+            'Grow Bags' => 0,
+            'Organic Bio Fertilizer & Manures' => 0,
+            'Seeds' => 0,
+            'Garden Accessories' => 0,
+            'Plastic Pots' => 0,
         ];
 
        
         $products = Product::with('images')->paginate($perpage);
         $prices = [];
         foreach ($products as $product) {
-            $categories['All plants'] += 1;
-            $categories[$product->product_category] += 1;
+            $categories['All'] += 1;
+            if(isset($categories[$product->product_category])){
+                $categories[$product->product_category] += 1;
+            }
             $prices[] = $product->product_price;
         }
 

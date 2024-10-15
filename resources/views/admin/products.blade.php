@@ -37,6 +37,11 @@ $btnDelete = '<a href="'. route('admin.products.delete', $product->id).'" class=
                                         <input type="hidden" name="operation" value="cover">
                                         <button type="submit"class="btn btn-primary">make this product cover</button>    
                                     </form>' : '';
+            $deletehtml = $product->images->count() > 1 ? '<form action="'. route('admin.products.image.update', $image->id).'" method="POST">
+                                       <input type="hidden" name="_token" value="'.csrf_token().'" />
+                                        <input type="hidden" name="operation" value="delete">
+                                        <button type="submit"class="btn btn-danger">delete</button>
+                                    </form>' : '';
             $html = '<div class="modal fade" id="'.$mid.'" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -52,14 +57,10 @@ $btnDelete = '<a href="'. route('admin.products.delete', $product->id).'" class=
                             </div>
                             <div class="modal-body">
                                 <div class="mt-3 text-center">
-                                    <form action="'. route('admin.products.image.update', $image->id).'" method="POST">
-                                       <input type="hidden" name="_token" value="'.csrf_token().'" />
-                                        <input type="hidden" name="operation" value="delete">
-                                        <button type="submit"class="btn btn-danger">delete</button>
-                                    </form>
+                                    
                                     
                                     '.$makemain.'
-                                    
+                                    '.$deletehtml.'
                                 </div>
                             </div>
 

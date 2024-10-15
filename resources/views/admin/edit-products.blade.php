@@ -44,12 +44,13 @@
         
         @php
             $categories = [
-                'Outdoor Plants',
-                'Indoor Plants',
-                'Office Plants',
-                'Potted',
-                'Others',
-            ]
+                'All' ,
+            'Grow Bags' ,
+            'Organic Bio Fertilizer & Manures' ,
+            'Seeds' ,
+            'Garden Accessories' ,
+            'Plastic Pots' ,
+    ];
         @endphp
        
         <div class="row">
@@ -79,12 +80,16 @@
                     ];
 
                     $tags = [
+                        'Pots',
+                        'Bags',
                         'Plants',
-                        'Green',
+                        'Seeds',
                         'Cactus',
                         'Flower',
-                        'Leave',
                         'Aquatic',
+                        'Garden',
+                        'Organic',
+                        'Accessories',
                     ];
 
                     $selected_tags = json_decode($product->product_tags);
