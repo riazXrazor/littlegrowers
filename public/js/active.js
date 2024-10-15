@@ -161,6 +161,29 @@
         $('[data-toggle="tooltip"]').tooltip();
     }
 
+    $("#orderby-filter").change(function () {
+        let val = $(this).val().split("__");
+        $("#filter-product-form").find('[name="orderby"]').val(val[0]);
+        $("#filter-product-form").find('[name="order_type"]').val(val[1]);
+        $("#filter-product-form").submit();
+    });
+
+    $("#perpage-filter").change(function () {
+        $("#filter-product-form").find('[name="per_page"]').val($(this).val());
+        $("#filter-product-form").submit();
+    });
+
+    $("#filter-category-select input").change(function () {
+        const vals = [];
+        $("#filter-category-select input:checked").each(function () {
+            vals.push($(this).val());
+        });
+        $("#filter-product-form")
+            .find('[name="filter_category"]')
+            .val(vals.join(","));
+        $("#filter-product-form").submit();
+    });
+
     // :: 12.0 Price Range Active Code
     $(".slider-range-price").each(function () {
         var min = jQuery(this).data("min");
@@ -175,6 +198,16 @@
             min: min,
             max: max,
             values: [value_min, value_max],
+            stop: function (event, ui) {
+                if (
+                    $("#filter-product-form")
+                        .find('[name="min_price"]')
+                        .val() &&
+                    $("#filter-product-form").find('[name="max_price"]').val()
+                ) {
+                    $("#filter-product-form").submit();
+                }
+            },
             slide: function (event, ui) {
                 var result =
                     label_result +
@@ -186,6 +219,12 @@
                     ui.values[1];
                 console.log(t);
                 t.closest(".slider-range").find(".range-price").html(result);
+                $("#filter-product-form")
+                    .find('[name="min_price"]')
+                    .val(ui.values[0]);
+                $("#filter-product-form")
+                    .find('[name="max_price"]')
+                    .val(ui.values[1]);
             },
         });
     });

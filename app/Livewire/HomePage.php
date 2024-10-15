@@ -10,6 +10,9 @@ class HomePage extends Component
     public function render()
     {
         $perpage = request()->has('perpage') ? request()->get('perpage') : 20;
+        $orderby = request()->has('orderby') ? request()->get('orderby') : 'created_at';
+        $order_type = request()->has('order_type') ? request()->get('order_type') : 'desc';
+        
         $categories = [
             'All' =>  0,
             'Grow Bags' => 0,
@@ -20,7 +23,24 @@ class HomePage extends Component
         ];
 
        
-        $products = Product::with('images')->paginate($perpage);
+        $products = Product::with('images');
+        if (request()->has('filter_category') && !empty(request()->get('filter_category'))) {
+           
+            $products = $products->where(function ($query) {
+                $cat_arr = explode(',', request()->get('filter_category'));
+                foreach ($cat_arr as  $value) {
+                            $query->orWhere('product_category', $value);   
+                }
+            });
+        }
+
+        if (request()->has('max_price') && request()->has('min_price') && !empty(request()->get('min_price')) && !empty(request()->get('max_price'))) {
+            $maxp = request()->get('max_price');
+            $minp = request()->get('min_price');
+            $products = $products->whereBetween('product_price', [$minp, $maxp]);
+        }
+
+        $products = $products->orderBy($orderby, $order_type)->paginate($perpage);
         $prices = [];
         foreach ($products as $product) {
             $categories['All'] += 1;
@@ -34,8 +54,8 @@ class HomePage extends Component
     //    dd($products);
 
         $price_braket = [
-            'max' => max($prices),
-            'min' => min($prices),
+            'max' => count($prices) > 0 ? max($prices) : 0,
+            'min' => count($prices) > 0 ? min($prices): 0,
         ];
         return view('livewire.home-page',['products' => $products, 'categories' => $categories, 'price_braket' => $price_braket]);
     }

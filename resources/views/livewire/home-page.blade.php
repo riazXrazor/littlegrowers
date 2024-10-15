@@ -14,20 +14,43 @@
                             <p>Showing {{ $from + 1 }}–{{ $to }} of {{ $products->total() }} results</p>
                             @endif
                         </div>
-                  
+                        <form id="filter-product-form" action="{{ url()->full() }}" method="get" class="form-inline">
+                            <input type="hidden" name="min_price" value="{{ request()->get('min_price') }}">
+                            <input type="hidden" name="max_price" value="{{ request()->get('max_price') }}">
+                            <input type="hidden" name="perpage" value="{{ request()->get('perpage') }}">
+                            <input type="hidden" name="filter_category" value="{{ request()->get('filter_category') }}">
+                            <input type="hidden" name="orderby" value="{{ request()->get('orderby') }}">
+                            <input type="hidden" name="order_type" value="{{ request()->get('order_type') }}">
+                        </form>
                         <!-- Search by Terms -->
                         <div class="search_by_terms">
-                            <form action="{{ url()->full() }}" method="get" class="form-inline">
-                                <select name="orderby" class="custom-select widget-title" onchange="this.form.submit()">
-                                    <option value="sales" selected>Short by Newest</option>
-                                  <option  value="popularity">Short by Price High to Low</option>
-                                  <option value="newest">Short by Price Low to High</option>
+                            <button onclick="window.location.href='{{ url()->current() }}'" class="btn alazea-btn">clear filter</button>
+                                @php
+                                    $orderbyarr = [
+                                    'created_at__desc' => 'Short by Newest',
+                                    'product_price__desc' => 'Short by Price High to Low',
+                                    'product_price__asc' => 'Short by Price Low to High',
+                                ];
+                                $selected = request()->get('orderby') && request()->get('order_type') ? request()->get('orderby').'__'.request()->get('order_type') : 'created_at__desc';
+                                @endphp
+                                <select id="orderby-filter" class="custom-select widget-title">
+                            
+
+                                  @foreach ($orderbyarr as $value => $text)
+
+                                  <option value="{{ $value }}"
+                                  @if ($selected == $value)
+                                  selected
+                                  @endif
+                                  >{{ $text }}</option>
+                                      
+                                  @endforeach
                      
                                 </select>
                                 @php
                                     $perpagearr = [20,60,80,100];
                                 @endphp
-                                <select name="perpage" class="custom-select widget-title" onchange="this.form.submit()">
+                                <select id="perpage-filter" class="custom-select widget-title">
                                   {{-- <option selected>Show: 9</option>
                                   <option value="1">12</option>
                                   <option value="2">18</option>
@@ -42,7 +65,7 @@
                                     >Show: {{ $value }}</option>
                                   @endforeach
                                 </select>
-                            </form>
+                       
                         </div>
                     </div>
                 </div>
@@ -58,12 +81,13 @@
                             <h4 class="widget-title">Prices</h4>
                             <div class="widget-desc">
                                 <div class="slider-range">
-                                    <div data-min="{{ $price_braket['min'] }}" data-max="{{ $price_braket['max'] }}" data-unit="₹" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="{{ $price_braket['min'] }}" data-value-max="{{ $price_braket['max'] }}" data-label-result="Price:">
+                                
+                                    <div data-min="{{ $price_braket['min'] }}" data-max="{{ $price_braket['max'] }}" data-unit="₹" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="{{ request()->get('min_price') ? request()->get('min_price') : $price_braket['min'] }}" data-value-max="{{ request()->get('max_price') ? request()->get('max_price') :  $price_braket['max'] }}" data-label-result="Price:">
                                         <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
                                         <span class="ui-slider-handle ui-state-default ui-corner-all first-handle" tabindex="0"></span>
                                         <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
                                     </div>
-                                    <div class="range-price">Price: ₹{{ $price_braket['min'] }} - ₹{{ $price_braket['max'] }}</div>
+                                    <div class="range-price">Price: ₹{{ request()->get('min_price') ? request()->get('min_price') : $price_braket['min'] }} - ₹{{ request()->get('max_price') ? request()->get('max_price') :  $price_braket['max'] }}</div>
                                 </div>
                             </div>
                         </div>
@@ -71,13 +95,21 @@
                         <!-- Shop Widget -->
                         <div class="shop-widget catagory mb-50">
                             <h4 class="widget-title">Categories</h4>
-                            <div class="widget-desc">
+                            <div class="widget-desc" id="filter-category-select">
+                                @php
+                                
+                                    $selected_cat = request()->get('filter_category') ? explode(',', request()->get('filter_category')) : []; 
+                                @endphp
                                 @foreach ($categories as $category => $value)
                                 <!-- Single Checkbox -->
                                
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                    <input type="checkbox" class="custom-control-input" id="{{$category}}">
-                                    <label class="custom-control-label" for="{{$category}}">{{ $category }} <span class="text-muted">({{ $value }})</span></label>
+                                    <input type="checkbox" class="custom-control-input" id="filter-category-{{$category}}" value="{{ $category }}"
+                                    @if (in_array($category, $selected_cat))
+                                        checked
+                                    @endif
+                                    >
+                                    <label class="custom-control-label" for="filter-category-{{$category}}">{{ $category }} <span class="text-muted">({{ $value }})</span></label>
                                 </div>
 
 

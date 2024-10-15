@@ -45,11 +45,11 @@
         @php
             $categories = [
                 'All' ,
-            'Grow Bags' ,
-            'Organic Bio Fertilizer & Manures' ,
-            'Seeds' ,
-            'Garden Accessories' ,
-            'Plastic Pots' ,
+                'Grow Bags' ,
+                'Organic Bio Fertilizer & Manures' ,
+                'Seeds' ,
+                'Garden Accessories' ,
+                'Plastic Pots' ,
     ];
         @endphp
        
@@ -64,7 +64,11 @@
                 </x-slot>
             
                 @foreach ($categories as $category)
-                    <option value="{{ $category }}" selected={{ $product->product_category == $category }}>{{ $category }}</option>
+                    <option value="{{ $category }}" 
+                    @if ($product->product_category == $category)
+                selected    
+                @endif
+                    >{{ $category }}</option>
                 @endforeach
             </x-adminlte-select2>
             </div>
