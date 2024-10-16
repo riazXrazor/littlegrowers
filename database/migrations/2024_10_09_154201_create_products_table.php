@@ -15,11 +15,10 @@ return new class extends Migration
         
             $table->id()->primary();;
             $table->string('product_name');
-            $table->string('product_price');
+            $table->integer('product_price');
             $table->text('product_description');
             $table->string('product_category');
             $table->string('product_tags');
-            // $table->string('product_images');
             $table->timestamps();
         });
     }

@@ -41,21 +41,19 @@ class HomePage extends Component
         }
 
         $products = $products->orderBy($orderby, $order_type)->paginate($perpage);
-        $prices = [];
-        foreach ($products as $product) {
-            $categories['All'] += 1;
-            if(isset($categories[$product->product_category])){
-                $categories[$product->product_category] += 1;
-            }
-            $prices[] = $product->product_price;
+      
+        foreach ($categories as $category => $value) {
+            $categories[$category] = Product::where('product_category', $category)->count();
         }
 
+        $categories['All'] = collect($categories)->sum(fn ($value) => $value);
+
         
-    //    dd($products);
+    //    dd(Product::max('product_price'));
 
         $price_braket = [
-            'max' => count($prices) > 0 ? max($prices) : 0,
-            'min' => count($prices) > 0 ? min($prices): 0,
+            'max' => Product::max('product_price'),
+            'min' =>  Product::min('product_price'),
         ];
         return view('livewire.home-page',['products' => $products, 'categories' => $categories, 'price_braket' => $price_braket]);
     }
