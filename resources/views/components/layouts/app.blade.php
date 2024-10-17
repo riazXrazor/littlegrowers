@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    {{-- <meta name="csrf-token" content="@csrfToken()"> --}}
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -39,14 +40,14 @@
                         <div class="top-header-content d-flex align-items-center justify-content-between">
                             <!-- Top Header Content -->
                             <div class="top-header-meta">
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email: infodeercreative@gmail.com</span></a>
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +1 234 122 122</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email:  rohit171209@gmail.com </span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +91 8100036170</span></a>
                             </div>
 
                             <!-- Top Header Content -->
                             <div class="top-header-meta d-flex">
                                 <!-- Language Dropdown -->
-                                <div class="language-dropdown">
+                                {{-- <div class="language-dropdown">
                                     <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle mr-30" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Language</button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -58,7 +59,7 @@
                                             <a class="dropdown-item" href="#">Latin</a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- Login -->
                                 <div class="login">
                                     <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Login</span></a>
@@ -82,8 +83,8 @@
                     <nav class="classy-navbar justify-content-between" id="alazeaNav">
 
                         <!-- Nav Brand -->
-                        <a href="index.html" class="nav-brand" style="color: #fff">
-                            Little <span style="color: #7cb850">Growers</span>
+                        <a href="index.html" class="nav-brand">
+                            <img  src="/img/s-littlegrowers-logo.png" alt="Little Growers">
                         </a>
 
                         <!-- Navbar Toggler -->
@@ -169,17 +170,17 @@
                     <div class="col-12 col-sm-6 col-lg-6">
                         <div class="single-footer-widget">
                             <div class="footer-logo mb-30">
-                                <a href="#" style="color: #fff">
-                                    Little <span style="color: 7cb850">Growers</span>
+                                <a href="#">
+                                    <img width="200" src="/img/s-littlegrowers-logo.png" alt="logo" />
                                 </a>
                             </div>
                             <p>Lorem ipsum dolor sit samet, consectetur adipiscing elit. India situs atione mantor</p>
                             <div class="social-info">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                <a href="https://www.facebook.com/share/tNf9bEvHbSDnV3Qy"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                {{-- <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a> --}}
+                                {{-- <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a> --}}
+                                <a href="https://www.instagram.com/little_growers.in/profilecard/?igsh=bjkyaDltdnZjYXg4"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                {{-- <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a> --}}
                             </div>
                         </div>
                     </div>
@@ -225,11 +226,11 @@
                             </div>
 
                             <div class="contact-information">
-                                <p><span>Address:</span> 505 Silk Rd, New York</p>
-                                <p><span>Phone:</span> +1 234 122 122</p>
-                                <p><span>Email:</span> info.deercreative@gmail.com</p>
+                                <p><span>Address:</span> South Kumrakhali, Masjid Bari Road, Kamalgazi, 700103 </p>
+                                <p><span>Phone:</span> +91 8100036170</p>
+                                <p><span>Email:</span> rohit171209@gmail.com </p>
                                 <p><span>Open hours:</span> Mon - Sun: 8 AM to 9 PM</p>
-                                <p><span>Happy hours:</span> Sat: 2 PM to 4 PM</p>
+                                {{-- <p><span>Happy hours:</span> Sat: 2 PM to 4 PM</p> --}}
                             </div>
                         </div>
                     </div>
@@ -268,6 +269,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             </div>
         </div>
     </footer>
+    <a href="https://api.whatsapp.com/send?phone=8100036170&text={{ urlencode('Hi, what is your query ?') }}." class="whatsapp-float" target="_blank">
+        <i class="fa fa-whatsapp whatsapp--float"></i>
+        </a>
     <!-- ##### Footer Area End ##### -->
 
     <!-- ##### All Javascript Files ##### -->

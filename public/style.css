@@ -547,6 +547,35 @@ img {
 .header-area .alazea-main-menu .classy-navbar .nav-brand {
     line-height: 1;
 }
+
+.header-area .alazea-main-menu .classy-navbar .nav-brand {
+    line-height: 1;
+    background: #fff;
+    border-radius: 50%;
+    width: 150px;
+    position: relative;
+    top: 65px;
+    padding: 15px;
+}
+.footer-logo {
+    background: #fff;
+    border-radius: 50%;
+    width: 150px;
+    padding: 15px;
+}
+.header-area .alazea-main-menu .classy-navbar .nav-brand img,
+.footer-logo img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 100%;
+}
+
+#sticky-wrapper.is-sticky .alazea-main-menu .classy-navbar .nav-brand {
+    top: 0;
+    width: 80px;
+    padding: 5px;
+}
+
 @media only screen and (max-width: 767px) {
     .header-area .alazea-main-menu .classy-navbar {
         height: 70px;
@@ -3502,3 +3531,27 @@ img {
 /* ======= The End ======= */
 
 /*# sourceMappingURL=style.css.map */
+
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 300px;
+    right: 40px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.whatsapp-float:hover {
+    font-size: 40px;
+    color: #fff;
+}

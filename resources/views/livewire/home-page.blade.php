@@ -30,6 +30,8 @@
                                     'created_at__desc' => 'Short by Newest',
                                     'product_price__desc' => 'Short by Price High to Low',
                                     'product_price__asc' => 'Short by Price Low to High',
+                                    'product_name__asc' => 'Short by Alphabetically, A-Z',
+                                    'product_name__desc' => 'Short by Alphabetically, Z-A',
                                 ];
                                 $selected = request()->get('orderby') && request()->get('order_type') ? request()->get('orderby').'__'.request()->get('order_type') : 'created_at__desc';
                                 @endphp
@@ -142,17 +144,33 @@
                                 </div> --}}
                             </div>
                         </div>
-
+                        @php
+                        $orderbyarr = [
+                        'created_at__desc' => 'New arrivals',
+                        'product_name__desc' => 'Alphabetically, A-Z',
+                        'product_name__asc' => 'Alphabetically, Z-A',
+                        'product_price__asc' => 'Price: low to high',
+                        'product_price__desc' => 'Price: high to low',
+                    ];
+                    $selected = request()->get('orderby') && request()->get('order_type') ? request()->get('orderby').'__'.request()->get('order_type') : 'created_at__desc';
+                    @endphp
                         <!-- Shop Widget -->
                         <div class="shop-widget sort-by mb-50">
                             <h4 class="widget-title">Sort by</h4>
-                            <div class="widget-desc">
-                                <!-- Single Checkbox -->
+                            <div id="sort-by-checkbox" class="widget-desc">
+                                @foreach ($orderbyarr as $key => $value)
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck7">
-                                    <label class="custom-control-label" for="customCheck7">New arrivals</label>
+                                    <input type="checkbox" class="custom-control-input" value="{{ $key }}" id="customCheck_{{ $key }}"
+                                    @if ($selected == $key)
+                                        checked
+                                    @endif
+                                    >
+                                    <label class="custom-control-label" for="customCheck_{{ $key }}" >{{ $value }}</label>
                                 </div>
+                                @endforeach
                                 <!-- Single Checkbox -->
+                               
+                                {{-- <!-- Single Checkbox -->
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                     <input type="checkbox" class="custom-control-input" id="customCheck8">
                                     <label class="custom-control-label" for="customCheck8">Alphabetically, A-Z</label>
@@ -171,7 +189,7 @@
                                 <div class="custom-control custom-checkbox d-flex align-items-center">
                                     <input type="checkbox" class="custom-control-input" id="customCheck11">
                                     <label class="custom-control-label" for="customCheck11">Price: high to low</label>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 

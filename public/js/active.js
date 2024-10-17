@@ -168,12 +168,28 @@
         $("#filter-product-form").submit();
     });
 
+    $("#sort-by-checkbox input[type='checkbox']").change(function () {
+        $("#sort-by-checkbox input[type='checkbox']").prop("checked", false);
+        $(this).prop("checked", true);
+        let val = $(this).val().split("__");
+        $("#filter-product-form").find('[name="orderby"]').val(val[0]);
+        $("#filter-product-form").find('[name="order_type"]').val(val[1]);
+        $("#filter-product-form").submit();
+    });
+
     $("#perpage-filter").change(function () {
-        $("#filter-product-form").find('[name="per_page"]').val($(this).val());
+        $("#filter-product-form").find('[name="perpage"]').val($(this).val());
         $("#filter-product-form").submit();
     });
 
     $("#filter-category-select input").change(function () {
+        if ($(this).val() == "All") {
+            if ($(this).is(":checked")) {
+                $("#filter-category-select input").attr("checked", true);
+            } else {
+                $("#filter-category-select input").attr("checked", false);
+            }
+        }
         const vals = [];
         $("#filter-category-select input:checked").each(function () {
             vals.push($(this).val());
