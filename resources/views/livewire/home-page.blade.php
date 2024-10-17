@@ -147,8 +147,8 @@
                         @php
                         $orderbyarr = [
                         'created_at__desc' => 'New arrivals',
-                        'product_name__desc' => 'Alphabetically, A-Z',
-                        'product_name__asc' => 'Alphabetically, Z-A',
+                        'product_name__asc' => 'Alphabetically, A-Z',
+                        'product_name__desc' => 'Alphabetically, Z-A',
                         'product_price__asc' => 'Price: low to high',
                         'product_price__desc' => 'Price: high to low',
                     ];
