@@ -25,5 +25,6 @@ jobs:
           EXCLUDE: "/.git/, /node_modules/, /vendor/"
           SCRIPT_AFTER: |
             whoami
-            ls -al
+            ls -all
+            cd ${{ secrets.TARGET_DIR }}
             composer install
