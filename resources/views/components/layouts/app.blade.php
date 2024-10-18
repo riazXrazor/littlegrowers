@@ -174,7 +174,7 @@
                                     <img width="200" src="/img/s-littlegrowers-logo.png" alt="logo" />
                                 </a>
                             </div>
-                            <p>Lorem ipsum dolor sit samet, consectetur adipiscing elit. India situs atione mantor</p>
+                            {{-- <p>Lorem ipsum dolor sit samet, consectetur adipiscing elit. India situs atione mantor</p> --}}
                             <div class="social-info">
                                 <a href="https://www.facebook.com/share/tNf9bEvHbSDnV3Qy"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                 {{-- <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a> --}}
