@@ -187,7 +187,7 @@
     <!-- ##### Service Area End ##### -->
 
     <!-- ##### Testimonial Area Start ##### -->
-    <section class="testimonial-area section-padding-100">
+    {{-- <section class="testimonial-area section-padding-100">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -272,7 +272,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ##### Testimonial Area End ##### -->
 
     <!-- ##### Cool Facts Area Start ##### -->
@@ -343,7 +343,7 @@
     <!-- ##### Cool Facts Area End ##### -->
 
     <!-- ##### Team Area Start ##### -->
-    <section class="team-area section-padding-100-0">
+    {{-- <section class="team-area section-padding-100-0">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -447,6 +447,6 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- ##### Team Area End ##### -->
 </div>

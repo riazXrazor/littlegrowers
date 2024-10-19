@@ -3,7 +3,7 @@
 {{-- Customize layout sections --}}
 
 {{-- @section('subtitle', 'Welcome') --}}
-@section('content_header_title', 'Add Products')
+@section('content_header_title', 'Update Product')
 {{-- @section('content_header_subtitle', 'Welcome') --}}
 
 {{-- Content body: main page content --}}
@@ -42,16 +42,7 @@
             </div>
         </div>
         
-        @php
-            $categories = [
-                'All' ,
-                'Grow Bags' ,
-                'Organic Bio Fertilizer & Manures' ,
-                'Seeds' ,
-                'Garden Accessories' ,
-                'Plastic Pots' ,
-    ];
-        @endphp
+    
        
         <div class="row">
             <div class="col-md-12">
@@ -64,11 +55,11 @@
                 </x-slot>
             
                 @foreach ($categories as $category)
-                    <option value="{{ $category }}" 
-                    @if ($product->product_category == $category)
+                    <option value="{{ $category->category_name }}" 
+                    @if ($product->product_category == $category->category_name)
                 selected    
                 @endif
-                    >{{ $category }}</option>
+                    >{{ $category->category_name }}</option>
                 @endforeach
             </x-adminlte-select2>
             </div>

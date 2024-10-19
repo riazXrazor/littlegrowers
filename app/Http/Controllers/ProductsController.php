@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
@@ -13,11 +14,13 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::with('images')->get();
-        return view('admin.products',['products' => $products]);
+        $categories = Categories::all();
+        return view('admin.products',['products' => $products, 'categories' => $categories]);
     }
 
     public function add(Request $request)
     {
+        $categories = Categories::all();
         if ($request->isMethod('post')) {
             
             $validated = $request->validate([
@@ -61,13 +64,13 @@ class ProductsController extends Controller
             
 
         }
-        return view('admin.add-products');
+        return view('admin.add-products',['categories' => $categories]);
     }
 
     public function edit($id, Request $request)
     {
         $product = Product::with('images')->where('id', $id)->first();
-
+        $categories = Categories::all();
         if ($request->isMethod('post')) {
             $validated = $request->validate([
                 'product_name' => 'required|max:255',
@@ -119,7 +122,7 @@ class ProductsController extends Controller
 
         }
        
-        return view('admin.edit-products',['product' => $product]);
+        return view('admin.edit-products',['product' => $product, 'categories' => $categories]);
     }
 
     public function delete($id)

@@ -21,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        
+        Blade::directive('getSettingValue', function ($name) {
+            return "<?php echo app('App\Models\Settings')->getSetting($name); ?>";
+        });
     }
 }

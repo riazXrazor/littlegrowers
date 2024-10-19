@@ -40,8 +40,8 @@
                         <div class="top-header-content d-flex align-items-center justify-content-between">
                             <!-- Top Header Content -->
                             <div class="top-header-meta">
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email:  rohit171209@gmail.com </span></a>
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +91 8100036170</span></a>
+                                {{-- <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email:  rohit171209@gmail.com </span></a> --}}
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: @getSettingValue('contact_mobile')</span></a>
                             </div>
 
                             <!-- Top Header Content -->
@@ -61,12 +61,39 @@
                                     </div>
                                 </div> --}}
                                 <!-- Login -->
-                                <div class="login">
+                                {{-- <div class="login">
                                     <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Login</span></a>
-                                </div>
+                                </div> --}}
                                 <!-- Cart -->
                                 <div class="cart">
-                                    <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Cart <span class="cart-quantity">(1)</span></span></a>
+                                    <a href="#" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Cart <span class="cart-quantity" >({{collect($cart_data)->count()}})</span></span></a>
+                                    
+
+                                    <div class="shopping-cart">
+                                        <div class="shopping-cart-header">
+                                          <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{collect($cart_data)->count()}}</span>
+                                          <div class="shopping-cart-total">
+                                            <span class="lighter-text">Total:</span>
+                                            <span class="main-color-text">₹ {{ collect($cart_data)->sum('price') }}</span>
+                                          </div>
+                                        </div> <!--end shopping-cart-header -->
+                                    
+                                        <ul class="shopping-cart-items">
+                                            @foreach ($cart_data as $item)
+                                            <li class="clearfix">
+                                                <img src="{{ Storage::url($item['photo']) }}" alt="{{ $item['name'] }}" />
+                                                <span class="item-name">{{ $item['name'] }}</span>
+                                                <span class="item-price">₹ {{ $item['price'] }}</span>
+                                                <span class="item-quantity">Quantity: {{ $item['quantity'] }}</span>
+                                              </li>
+                                         @endforeach
+                                          
+                                    
+                                          
+                                        </ul>
+                                    
+                                        <button class="btn alazea-btn cart-checkout-btn">Checkout</button>
+                                      </div> <!--end shopping-cart -->
                                 </div>
                             </div>
                         </div>
@@ -74,6 +101,8 @@
                 </div>
             </div>
         </div>
+
+     
 
         <!-- ***** Navbar Area ***** -->
         <div class="alazea-main-menu">
@@ -83,7 +112,7 @@
                     <nav class="classy-navbar justify-content-between" id="alazeaNav">
 
                         <!-- Nav Brand -->
-                        <a href="index.html" class="nav-brand">
+                        <a href="/" class="nav-brand">
                             <img  src="/img/s-littlegrowers-logo.png" alt="Little Growers">
                         </a>
 
@@ -145,7 +174,7 @@
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i> Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Shop</li>
                         </ol>
                     </nav>
@@ -170,7 +199,7 @@
                     <div class="col-12 col-sm-6 col-lg-6">
                         <div class="single-footer-widget">
                             <div class="footer-logo mb-30">
-                                <a href="#">
+                                <a href="/">
                                     <img width="200" src="/img/s-littlegrowers-logo.png" alt="logo" />
                                 </a>
                             </div>
@@ -226,10 +255,10 @@
                             </div>
 
                             <div class="contact-information">
-                                <p><span>Address:</span> South Kumrakhali, Masjid Bari Road, Kamalgazi, 700103 </p>
-                                <p><span>Phone:</span> +91 8100036170</p>
-                                <p><span>Email:</span> rohit171209@gmail.com </p>
-                                <p><span>Open hours:</span> Mon - Sun: 8 AM to 9 PM</p>
+                                <p><span>Address:</span> @getSettingValue('contact_address')</p>
+                                <p><span>Phone:</span> @getSettingValue('contact_mobile')</p>
+                                {{-- <p><span>Email:</span> rohit171209@gmail.com </p> --}}
+                                <p><span>Open hours:</span> @getSettingValue('open_hours') </p>
                                 {{-- <p><span>Happy hours:</span> Sat: 2 PM to 4 PM</p> --}}
                             </div>
                         </div>

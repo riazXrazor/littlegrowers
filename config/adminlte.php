@@ -311,6 +311,16 @@ return [
             'url' => 'admin/products',
             'icon' => 'far fa-fw fa-file',
         ],
+        [
+            'text' => 'Product Categories',
+            'url' => 'admin/categories',
+            'icon' => 'far fa-fw fa-file',
+        ],
+        [
+            'text' => 'Settings',
+            'url' => 'admin/settings',
+            'icon' => 'far fa-fw fa-file',
+        ],
         // [
         //     'type' => 'sidebar-menu-search',
         //     'text' => 'search',

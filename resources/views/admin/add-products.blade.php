@@ -42,16 +42,7 @@
             </div>
         </div>
 
-        @php
-        $categories = [
-            'All' ,
-            'Grow Bags' ,
-            'Organic Bio Fertilizer & Manures' ,
-            'Seeds' ,
-            'Garden Accessories' ,
-            'Plastic Pots' ,
-    ];
-    @endphp
+       
         <div class="row">
             <div class="col-md-12">
                 <x-adminlte-select2 name="product_category" label="Product Category" 
@@ -62,12 +53,12 @@
                     </div>
                 </x-slot>
                 @foreach ($categories as $category)
-                <option value="{{ $category }}" 
-                @if (old('product_category') == $category)
+                <option value="{{ $category->category_name }}" 
+                @if (old('product_category') == $category->category_name)
                 selected    
                 @endif
                 
-                >{{ $category }}</option>
+                >{{ $category->category_name }}</option>
             @endforeach
             </x-adminlte-select2>
             </div>

@@ -17,10 +17,10 @@
                     </div>
                     <!-- Contact Information -->
                     <div class="contact-information">
-                        <p><span>Address:</span> South Kumrakhali, Masjid Bari Road, Kamalgazi, 700103</p>
-                        <p><span>Phone:</span> +91 8100036170</p>
-                        <p><span>Email:</span>rohit171209@gmail.com</p>
-                        <p><span>Open hours:</span> Mon - Sun: 8 AM to 9 PM</p>
+                        <p><span>Address: </span> @getSettingValue('contact_address')</p>
+                        <p><span>Phone: </span>  @getSettingValue('contact_mobile')</p>
+                        {{-- <p><span>Email:</span>rohit171209@gmail.com</p> --}}
+                        <p><span>Open hours: </span> @getSettingValue('open_hours')</p>
                         {{-- <p><span>Happy hours:</span> Sat: 2 PM to 4 PM</p> --}}
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                     <!-- Google Maps -->
                     <div class="map-area mb-100">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d921.8662580063977!2d88.39776069816023!3d22.449152585675947!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1729148104501!5m2!1sen!2sin"
+                            src="@getSettingValue('map_location')"
                             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>

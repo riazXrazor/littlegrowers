@@ -200,6 +200,10 @@
         $("#filter-product-form").submit();
     });
 
+    $(".cart").on("click", function (e) {
+        $(this).find(".shopping-cart").toggle();
+    });
+
     // :: 12.0 Price Range Active Code
     $(".slider-range-price").each(function () {
         var min = jQuery(this).data("min");
