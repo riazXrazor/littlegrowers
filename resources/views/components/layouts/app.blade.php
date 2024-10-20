@@ -4,16 +4,37 @@
 <head>
     <meta charset="UTF-8">
     {{-- <meta name="csrf-token" content="@csrfToken()"> --}}
-    <meta name="description" content="">
+    <meta name="description" content="Little Growers is your one-stop shop for small plants, seeds, fertilizers, and gardening accessories. Create your indoor garden with affordable, high-quality products. Let’s grow together!" />
+    <meta name="title" content="Little Growers – Small Plants, Seeds, Fertilizers, Pots & Gardening Accessories" />
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Little Growers – Your Gardening Companion" />
+    <meta property="og:description" content="Discover high-quality small plants, seeds, fertilizers, and gardening essentials at LittleGrowers.xyz. Let’s grow your garden together!" />
+    <meta property="og:url" content="https://www.littlegrowers.xyz" />
+    <meta property="og:image" content="https://www.littlegrowers.xyz/img/w-littlegrowers-logo.jpeg" />
+    <meta property="og:site_name" content="Little Growers" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Little Growers – Small Plants & Gardening Essentials" />
+    <meta name="twitter:description" content="Grow your love for plants with Little Growers. Explore our selection of small plants, seeds, fertilizers, and more." />
+    <meta name="twitter:image" content="https://www.littlegrowers.xyz/img/w-littlegrowers-logo.jpeg" />
+
+
+    <link rel="canonical" href="https://www.littlegrowers.xyz" />
+    <meta name="keywords" content="small plants, seeds, fertilizers, gardening accessories, plastic pots, plant care, indoor plants, Little Growers" />
+
+    <link rel="icon" href="https://www.littlegrowers.xyz/favicon.ico" type="image/x-icon" />
+
+
     <!-- Title -->
     <title>Little Growers</title>
-
-    <!-- Favicon -->
-    <link rel="icon" href="/img/core-img/favicon.ico">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
@@ -28,7 +49,7 @@
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-circle"></div>
         <div class="preloader-img">
-            <img src="/img/core-img/leaf.png" alt="">
+            <img src="/img/w-littlegrowers-logo.jpeg" alt="">
         </div>
     </div>
 
