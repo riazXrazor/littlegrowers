@@ -11,41 +11,42 @@
                     </div>
                    
                 </div>
-                <div class="shopping-cart-page">
-                   
+
+                <table class="table">
+                    <tr>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Sub Total</th>
+                        <th></th>
+                    </tr> 
+                    @foreach ($cart_data as $id => $product)
+                    <tr>
+                        <td><img width="70" src="{{ Storage::url($product['photo']) }}" alt="{{ $product['name'] }}" /></td>
+                        <td><a style="color: #70c745" href="{{ $product['url'] }}">{{ $product['name'] }}</a></td>
+                        <td>₹ {{ $product['price'] }}</td>
+                        <td>{{ $product['quantity'] }}</td>
+                        <td>₹ {{ $product['price'] * $product['quantity'] }}</td>
+                        <td><a href="#" class="cart-item-delete" wire:click.prevent="removeFromCart({{ $id }})"><i class="fa fa-trash cart-delete-icon"></i></a></td>
+                    </tr>
+                    @endforeach
+                    <tr>
+                        <td style="text-align: center" colspan="4">
+                            <span style="font-size: 32px"> Total</span>
+                        </td>
+                        <td>
+                           <span style="font-size: 32px"> ₹ {{ collect($cart_data)->sum('price') }}</span> 
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <button wire:click.prevent="paceOrder" class="btn alazea-btn cart-checkout-btn">Checkout / Place Order</button>
+                        </td>
+                    </tr>
+                </table>
                 
-                    <ul class="shopping-cart-items">
-                        <li class="clearfix">
-                        {{-- <span class="item-name">Image</span> --}}
-                        <span class="item-name" style="color: #707070;">Image</span>
-                            <span class="item-price" style="color: #707070;">Prduct Name</span>
-                           
-                            <span class="item-price" style="color: #707070;">Price</span>
-                            <span class="item-quantity" style="color: #707070;">Quantity</span>
-                            <span class="item-price" style="color: #707070;">Sub Total</span>
-                        </li>
-                        @foreach ($cart_data as $item)
-                        <li class="clearfix">
-                            <img src="{{ Storage::url($item['photo']) }}" alt="{{ $item['name'] }}" />
-                            <span class="item-name">{{ $item['name'] }}</span>
-                            <span class="item-price">₹ {{ $item['price'] }}</span>
-                            <span class="item-quantity">{{ $item['quantity'] }}</span>
-                            <span class="item-price">₹ {{ $item['quantity'] * $item['price'] }}</span>
-                          </li>
-                     @endforeach
-                      
-                
-                      
-                    </ul>
-                    <div class="shopping-cart-header">
-                        <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{collect($cart_data)->count()}}</span>
-                        <div class="shopping-cart-total">
-                          <span class="lighter-text">Total:</span>
-                          <span class="main-color-text">₹ {{ collect($cart_data)->sum('price') }}</span>
-                        </div>
-                      </div> <!--end shopping-cart-header -->
-                    <button class="btn alazea-btn cart-checkout-btn">Checkout</button>
-                  </div> 
             </div>
         </div>
     </section>

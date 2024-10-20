@@ -17,7 +17,7 @@ class ProductDetailsPage extends Component
     public function render()
     {
         $product = Product::findBySlug($this->slug);
-        return view('livewire.product-details-page',['product' => $product])->layout('components.layouts.app', ['cart_data' => !empty(session()->get('cart')) ?  session()->get('cart') : []]);
+        return view('livewire.product-details-page',['product' => $product]);
     }
 
     public function addItemToCart($id)
@@ -25,7 +25,7 @@ class ProductDetailsPage extends Component
         $product = Product::with('images')->find($id);
 
         if (!$product) {
-            return redirect()->route('homepage');
+            return ;
         }
 
         $cart = session()->get('cart');
@@ -42,8 +42,9 @@ class ProductDetailsPage extends Component
             ];
 
             session()->put('cart', $cart);
-
-            return redirect()->route('homepage');
+            $this->dispatch('new-item-to-cart');
+            $this->dispatch('alert',['type' => 'success',  'message' => $product->product_name.' added to cart!']);
+            return ;
         }
 
         if (isset($cart[$id])) {
@@ -51,8 +52,9 @@ class ProductDetailsPage extends Component
             $cart[$id]['quantity']++;
 
             session()->put('cart', $cart);
-
-            return redirect()->route('homepage');
+            $this->dispatch('new-item-to-cart');
+            $this->dispatch('alert',['type' => 'success',  'message' => $cart[$id]['name'].' updated in cart!']);
+            return ;
         }
 
         $cart[$product->id] = [
@@ -64,7 +66,8 @@ class ProductDetailsPage extends Component
 
         session()->put('cart', $cart);
 
-        redirect()->route('product.details', $this->slug);
+        $this->dispatch('new-item-to-cart');
+        $this->dispatch('alert',['type' => 'success',  'message' => $product->product_name.' added to cart!']);
             
     }
 }

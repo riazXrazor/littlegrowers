@@ -15,6 +15,9 @@
     <!-- Favicon -->
     <link rel="icon" href="/img/core-img/favicon.ico">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
+
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="/style.css">
 
@@ -41,7 +44,9 @@
                             <!-- Top Header Content -->
                             <div class="top-header-meta">
                                 {{-- <a href="#" data-toggle="tooltip" data-placement="bottom" title="infodeercreative@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email:  rohit171209@gmail.com </span></a> --}}
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: @getSettingValue('contact_mobile')</span></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom"
+                                    title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us:
+                                        @getSettingValue('contact_mobile')</span></a>
                             </div>
 
                             <!-- Top Header Content -->
@@ -65,36 +70,7 @@
                                     <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Login</span></a>
                                 </div> --}}
                                 <!-- Cart -->
-                                <div class="cart">
-                                    <a href="#" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Cart <span class="cart-quantity" >({{collect($cart_data)->count()}})</span></span></a>
-                                    
-
-                                    <div class="shopping-cart">
-                                        <div class="shopping-cart-header">
-                                          <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">{{collect($cart_data)->count()}}</span>
-                                          <div class="shopping-cart-total">
-                                            <span class="lighter-text">Total:</span>
-                                            <span class="main-color-text">₹ {{ collect($cart_data)->sum('price') }}</span>
-                                          </div>
-                                        </div> <!--end shopping-cart-header -->
-                                    
-                                        <ul class="shopping-cart-items">
-                                            @foreach ($cart_data as $item)
-                                            <li class="clearfix">
-                                                <img src="{{ Storage::url($item['photo']) }}" alt="{{ $item['name'] }}" />
-                                                <span class="item-name">{{ $item['name'] }}</span>
-                                                <span class="item-price">₹ {{ $item['price'] }}</span>
-                                                <span class="item-quantity">Quantity: {{ $item['quantity'] }}</span>
-                                              </li>
-                                         @endforeach
-                                          
-                                    
-                                          
-                                        </ul>
-                                    
-                                        <button class="btn alazea-btn cart-checkout-btn">Checkout</button>
-                                      </div> <!--end shopping-cart -->
-                                </div>
+                                @livewire('cart-header-component')
                             </div>
                         </div>
                     </div>
@@ -102,7 +78,7 @@
             </div>
         </div>
 
-     
+
 
         <!-- ***** Navbar Area ***** -->
         <div class="alazea-main-menu">
@@ -113,7 +89,7 @@
 
                         <!-- Nav Brand -->
                         <a href="/" class="nav-brand">
-                            <img  src="/img/s-littlegrowers-logo.png" alt="Little Growers">
+                            <img src="/img/s-littlegrowers-logo.png" alt="Little Growers">
                         </a>
 
                         <!-- Navbar Toggler -->
@@ -150,7 +126,8 @@
                     <!-- Search Form -->
                     <div class="search-form">
                         <form action="#" method="get">
-                            <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
+                            <input type="search" name="search" id="search"
+                                placeholder="Type keywords &amp; press enter...">
                             <button type="submit" class="d-none"></button>
                         </form>
                         <!-- Close Icon -->
@@ -165,7 +142,8 @@
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
         <!-- Top Breadcrumb Area -->
-        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(/img/bg-img/24.jpg);">
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center"
+            style="background-image: url(/img/bg-img/24.jpg);">
             <h2>Shop</h2>
         </div>
 
@@ -205,16 +183,19 @@
                             </div>
                             {{-- <p>Lorem ipsum dolor sit samet, consectetur adipiscing elit. India situs atione mantor</p> --}}
                             <div class="social-info">
-                                <a href="https://www.facebook.com/share/tNf9bEvHbSDnV3Qy"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="https://www.facebook.com/share/tNf9bEvHbSDnV3Qy"><i class="fa fa-facebook"
+                                        aria-hidden="true"></i></a>
                                 {{-- <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a> --}}
                                 {{-- <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a> --}}
-                                <a href="https://www.instagram.com/little_growers.in/profilecard/?igsh=bjkyaDltdnZjYXg4"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a
+                                    href="https://www.instagram.com/little_growers.in/profilecard/?igsh=bjkyaDltdnZjYXg4"><i
+                                        class="fa fa-instagram" aria-hidden="true"></i></a>
                                 {{-- <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a> --}}
                             </div>
                         </div>
                     </div>
 
-                   
+
 
                     <!-- Single Footer Widget -->
                     <div class="col-12 col-sm-6 col-lg-3">
@@ -278,8 +259,11 @@
                     <div class="col-12 col-md-6">
                         <div class="copywrite-text">
                             <p>&copy;
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
-</p>
+                                Copyright &copy;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script> All rights reserved
+                            </p>
                         </div>
                     </div>
                     <!-- Footer Nav -->
@@ -298,9 +282,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             </div>
         </div>
     </footer>
-    <a href="https://api.whatsapp.com/send?phone=8100036170&text={{ urlencode('Hi, what is your query ?') }}." class="whatsapp-float" target="_blank">
+    <a href="https://api.whatsapp.com/send?phone=@getSettingValue('whatsapp_number')&text=@getSettingValue('whatsapp_initial_text')" class="whatsapp-float"
+        target="_blank">
         <i class="fa fa-whatsapp whatsapp--float"></i>
-        </a>
+    </a>
     <!-- ##### Footer Area End ##### -->
 
     <!-- ##### All Javascript Files ##### -->
@@ -310,10 +295,31 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
     <script src="/js/bootstrap/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     <!-- All Plugins js -->
     <script src="/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="/js/active.js"></script>
+
+    <script>
+        window.addEventListener('alert', event => {
+            toastr.options = {
+                    "closeButton": true,
+                    "progressBar": true,
+                    "positionClass": "toast-bottom-right",
+                }
+                
+
+            event.detail.forEach(detail => { 
+                toastr[detail.type](detail.message,
+                    detail.title ?? '') 
+            });
+        });
+    </script>
+
+
 </body>
 
 </html>

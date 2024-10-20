@@ -50,7 +50,7 @@ class HomePage extends Component
             'max' => Product::max('product_price'),
             'min' =>  Product::min('product_price'),
         ];
-        return view('livewire.home-page',['products' => $products, 'categories' => $categories, 'price_braket' => $price_braket])->layout('components.layouts.app', ['cart_data' => !empty(session()->get('cart')) ?  session()->get('cart') : []]); 
+        return view('livewire.home-page',['products' => $products, 'categories' => $categories, 'price_braket' => $price_braket]); 
     }
 
     public function addItemToCart($id)
@@ -58,7 +58,7 @@ class HomePage extends Component
         $product = Product::with('images')->find($id);
 
         if (!$product) {
-            return redirect()->route('homepage');
+            return ;
         }
 
         $cart = session()->get('cart');
@@ -70,13 +70,15 @@ class HomePage extends Component
                     "name" => $product->product_name,
                     "quantity" => 1,
                     "price" => $product->product_price,
-                    "photo" => $product->images->first()->product_images
+                    "photo" => $product->images->first()->product_images,
+                    'url' => route('product.details', $product->slug)
                 ]
             ];
 
             session()->put('cart', $cart);
-
-            return redirect()->route('homepage');
+            $this->dispatch('new-item-to-cart');
+            $this->dispatch('alert',['type' => 'success',  'message' => $product->product_name.' added to cart!']);
+            return ;
         }
 
         if (isset($cart[$id])) {
@@ -84,20 +86,23 @@ class HomePage extends Component
             $cart[$id]['quantity']++;
 
             session()->put('cart', $cart);
-
-            return redirect()->route('homepage');
+            $this->dispatch('new-item-to-cart');
+            $this->dispatch('alert',['type' => 'success',  'message' => $cart[$id]['name'].' updated in cart!']);
+            return;
         }
 
         $cart[$product->id] = [
             "name" => $product->product_name,
             "quantity" => 1,
             "price" => $product->product_price,
-            "photo" => $product->images->first()->product_images
+            "photo" => $product->images->first()->product_images,
+            'url' => route('product.details', $product->slug)
         ];
 
         session()->put('cart', $cart);
 
-        redirect()->route('homepage');
+        $this->dispatch('new-item-to-cart');
+        $this->dispatch('alert',['type' => 'success',  'message' => $product->product_name.' added to cart!']);
             
     }
 }

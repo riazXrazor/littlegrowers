@@ -3536,8 +3536,8 @@ img {
     position: fixed;
     width: 60px;
     height: 60px;
-    bottom: 300px;
-    right: 40px;
+    bottom: 10%;
+    right: 2%;
     background-color: #25d366;
     color: #fff;
     border-radius: 50px;
@@ -3616,6 +3616,18 @@ img {
 
         .item-quantity {
             color: #abb0b8;
+        }
+
+        .item-delete {
+            display: block;
+            float: right;
+            position: relative;
+            bottom: 15px;
+
+            .fa {
+                font-size: 18px;
+                color: #c42525 !important;
+            }
         }
     }
 }
@@ -3711,5 +3723,14 @@ img {
             max-width: 100px;
             min-width: 100px;
         }
+    }
+}
+
+.cart-item-delete {
+    display: block;
+    float: right;
+    .fa {
+        font-size: 18px;
+        color: #c42525 !important;
     }
 }

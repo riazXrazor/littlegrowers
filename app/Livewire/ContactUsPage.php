@@ -21,7 +21,7 @@ class ContactUsPage extends Component
     ];
     public function render()
     {
-        return view('livewire.contact-us-page')->layout('components.layouts.app', ['cart_data' => !empty(session()->get('cart')) ?  session()->get('cart') : []]);
+        return view('livewire.contact-us-page');
     }
 
     public function submit()

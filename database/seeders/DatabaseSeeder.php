@@ -67,6 +67,17 @@ class DatabaseSeeder extends Seeder
         //     'setting_label' => 'Map Location',
         // ]);
 
+        // Settings::create([
+        //     'setting_name' => 'whatsapp_number',
+        //     'setting_value' => '+918100036170',
+        //     'setting_label' => 'Whatsapp Number',
+        // ]);
+        // Settings::create([
+        //     'setting_name' => 'whatsapp_initial_text',
+        //     'setting_value' => 'Hi, what is your query ?',
+        //     'setting_label' => 'Whatsapp Text',
+        // ]);
+
         
     }
 }
