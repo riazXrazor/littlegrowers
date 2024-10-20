@@ -3734,3 +3734,24 @@ img {
         color: #c42525 !important;
     }
 }
+
+.cart-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2px;
+    .cart-checkout-btn {
+        min-width: unset;
+    }
+}
+
+.alazea-btn-red {
+    background-color: #e61d47;
+    border: 1px solid #e61d47;
+    color: #fff;
+
+    &:hover {
+        background-color: #fff;
+        color: #e61d47;
+    }
+}

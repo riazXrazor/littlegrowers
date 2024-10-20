@@ -4,16 +4,19 @@
     <section class="about-us-area">
         <div class="container">
             <div class="row justify-content-between">
-                <div class="col-12 col-lg-5">
+                <div class="col-12 col-lg-12">
                     <!-- Section Heading -->
                     <div class="section-heading">
                         <h2>ABOUT US</h2>
-                        <p>We are leading in the plants service fields.</p>
+                        <p>Welcome to Little Growers</p>
                     </div>
-                    <p>Quisque orci quam, vulputate non commodo finibus, molestie ac ante. Duis in sceleri quesem. Nulla sit amet varius nunc. Maecenas dui, tempeu ullam corper in.</p>
+                    <p>Your go-to destination for all things green! At Little Growers, we believe that growing plants is not just a hobby, it’s a lifestyle. Our mission is to bring nature into every home by providing you with the best quality plants and gardening essentials to cultivate your own little oasis.</p>
+                    <p>Founded with a passion for plants and a desire to make gardening accessible to everyone, we offer a wide variety of small plants, seeds, fertilizers, plastic pots, and other gardening accessories. Whether you're an experienced gardener or just starting out, we’re here to help you nurture your love for plants with ease and joy.</p>
+
+                        <p>We carefully select our products to ensure that they are not only affordable but also sustainable and easy to use. From vibrant indoor plants that brighten up your living spaces to seeds and fertilizers that give your garden a fresh start, Little Growers is your partner in green living.</p>
 
                     <!-- Progress Bar Content Area -->
-                    <div class="alazea-progress-bar mb-50">
+                    {{-- <div class="alazea-progress-bar mb-50">
                         <!-- Single Progress Bar -->
                         <div class="single_progress_bar">
                             <p>Office plants</p>
@@ -57,10 +60,10 @@
                                 <span class="fill" data-percentage="65"></span>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
-                <div class="col-12 col-lg-6">
+                {{-- <div class="col-12 col-lg-6">
                     <div class="alazea-benefits-area">
                         <div class="row">
                             <!-- Single Benefits Area -->
@@ -95,12 +98,12 @@
                                 <div class="single-benefits-area">
                                     <img src="img/core-img/b4.png" alt="">
                                     <h5>Environmentally friendly</h5>
-                                    <p>Intiam eu sagittis est, at commodo lacini libero. Praesent dignissim sed odio vel aliquam manta lagorn.</p>
+                                    <p>We’re committed to sustainability and offer products that support an environmentally-friendly approach to gardening.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 
@@ -121,8 +124,8 @@
                 <div class="col-12">
                     <!-- Section Heading -->
                     <div class="section-heading text-center">
-                        <h2>OUR SERVICES</h2>
-                        <p>We provide the perfect service for you.</p>
+                        <h2>Why choose Little Growers?</h2>
+                        {{-- <p>We provide the perfect service for you.</p> --}}
                     </div>
                 </div>
             </div>
@@ -135,12 +138,12 @@
                         <div class="single-service-area d-flex align-items-center">
                             <!-- Icon -->
                             <div class="service-icon mr-30">
-                                <img src="img/core-img/s1.png" alt="">
+                                <img src="img/core-img/b1.png" alt="">
                             </div>
                             <!-- Content -->
                             <div class="service-content">
-                                <h5>Plants Care</h5>
-                                <p>In Aenean purus, pretium sito amet sapien denim moste consectet sedoni urna placerat sodales.service its.</p>
+                                <h5>Quality Plants</h5>
+                                <p>We handpick small, healthy plants that are easy to care for, making them perfect for beginners and seasoned plant lovers alike.</p>
                             </div>
                         </div>
 
@@ -148,12 +151,12 @@
                         <div class="single-service-area d-flex align-items-center">
                             <!-- Icon -->
                             <div class="service-icon mr-30">
-                                <img src="img/core-img/s2.png" alt="">
+                                <img src="img/core-img/b2.png" alt="">
                             </div>
                             <!-- Content -->
                             <div class="service-content">
-                                <h5>Pressure Washing</h5>
-                                <p>In Aenean purus, pretium sito amet sapien denim moste consectet sedoni urna placerat sodales.service its.</p>
+                                <h5>Wide Range of Products</h5>
+                                <p>Explore our collection of seeds, fertilizers, and durable plastic pots to grow your green space from scratch.</p>
                             </div>
                         </div>
 
@@ -161,12 +164,24 @@
                         <div class="single-service-area d-flex align-items-center">
                             <!-- Icon -->
                             <div class="service-icon mr-30">
-                                <img src="img/core-img/s3.png" alt="">
+                                <img src="img/core-img/b3.png" alt="">
                             </div>
                             <!-- Content -->
                             <div class="service-content">
-                                <h5>Tree Service &amp; Trimming</h5>
-                                <p>In Aenean purus, pretium sito amet sapien denim moste consectet sedoni urna placerat sodales.service its.</p>
+                                <h5>Expert Support</h5>
+                                <p>Need help with plant care or choosing the right product? Our team of plant enthusiasts is always ready to guide you.</p>
+                            </div>
+                        </div>
+
+                        <div class="single-service-area d-flex align-items-center">
+                            <!-- Icon -->
+                            <div class="service-icon mr-30">
+                                <img src="img/core-img/b4.png" alt="">
+                            </div>
+                            <!-- Content -->
+                            <div class="service-content">
+                                <h5>Eco-Friendly Options</h5>
+                                <p>We’re committed to sustainability and offer products that support an environmentally-friendly approach to gardening.</p>
                             </div>
                         </div>
 
@@ -276,7 +291,7 @@
     <!-- ##### Testimonial Area End ##### -->
 
     <!-- ##### Cool Facts Area Start ##### -->
-    <section class="cool-facts-area bg-img section-padding-100-0" style="background-image: url(img/bg-img/cool-facts.png);">
+    {{-- <section class="cool-facts-area bg-img section-padding-100-0" style="background-image: url(img/bg-img/cool-facts.png);">
         <div class="container">
             <div class="row">
 
@@ -339,7 +354,7 @@
         <div class="side-img wow fadeInUp" data-wow-delay="500ms">
             <img src="img/core-img/pot.png" alt="">
         </div>
-    </section>
+    </section> --}}
     <!-- ##### Cool Facts Area End ##### -->
 
     <!-- ##### Team Area Start ##### -->

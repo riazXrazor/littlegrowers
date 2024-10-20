@@ -26,6 +26,9 @@
           
         </ul>
     
-        <button class="btn alazea-btn cart-checkout-btn" wire:click.prevent="checkoutpage">Checkout</button>
+        <div class="cart-footer">
+          <button class="btn alazea-btn cart-checkout-btn" wire:click.prevent="checkoutpage">Checkout</button>
+          <button class="btn alazea-btn cart-checkout-btn alazea-btn-red" wire:click.prevent="clearCart">Clear Cart</button>
+        </div>
       </div> <!--end shopping-cart -->
 </div>

@@ -25,6 +25,12 @@ class CartHeaderComponent extends Component
         $this->dispatch('alert',['type' => 'info',  'message' => $product['name'].' removed from cart!']);
     }
 
+    public function clearCart()
+    {
+        session()->forget('cart');
+        $this->dispatch('alert',['type' => 'info',  'message' => 'Cart cleared!']);
+    }
+
     public function checkoutpage()
     {
         return redirect()->route('cart.page');

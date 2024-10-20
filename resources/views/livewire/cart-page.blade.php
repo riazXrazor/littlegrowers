@@ -4,7 +4,7 @@
     <section class="contact-area">
         <div class="container">
             <div class="row align-items-center justify-content-between">
-                <div class="col-12 col-lg-6 offset-lg-4">
+                <div class="col-12 col-lg-12">
                     <!-- Section Heading -->
                     <div class="section-heading">
                         <h2>CART</h2>
@@ -12,6 +12,7 @@
                    
                 </div>
 
+                @if (count($cart_data) > 0)
                 <table class="table">
                     <tr>
                         <th>Image</th>
@@ -46,7 +47,14 @@
                         </td>
                     </tr>
                 </table>
+                @else
                 
+                <div class="alert alert-danger" role="alert">
+                    <strong>No product in cart</strong>
+                </div>
+
+                @endif
+
             </div>
         </div>
     </section>

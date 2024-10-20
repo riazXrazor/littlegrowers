@@ -21,6 +21,7 @@ class CartPage extends Component
         return redirect()->route('cart.page');
     }
     
+    
     public function paceOrder()
     {
         $mobile = Settings::select('setting_value')->where('setting_name', 'whatsapp_number')->first()->setting_value;
