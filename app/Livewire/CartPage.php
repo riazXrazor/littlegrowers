@@ -25,12 +25,12 @@ class CartPage extends Component
     {
         $mobile = Settings::select('setting_value')->where('setting_name', 'whatsapp_number')->first()->setting_value;
         $items = session()->get('cart');
-        $ordertext = "";
+        $ordertext = urlencode("**NEW ORDER**")."%0a";
         if (!empty($items)) {
             foreach($items as $item){
                 // $ordertext .= urlencode($item['name'].' x '.$item['quantity']).'%0a'.urlencode($item['url']).'%0a%0a';
 
-                $ordertext .= urlencode("**NEW ORDER**")."%0a";
+                
                 $ordertext .= urlencode("Product Name : *".$item['name']."*")."%0a";
                 $ordertext .= urlencode("Quantity : *".$item['quantity']."*")."%0a";
                 $ordertext .= urlencode("Price : *₹ ".$item['price']."*")."%0a";
